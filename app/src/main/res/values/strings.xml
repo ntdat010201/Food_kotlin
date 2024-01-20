@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FoodApp-kotlin</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_home">Home</string>
+    <string name="tv_would_like_to_eat">Bạn Muốn Ăn Gì</string>
+    <string name="tv_over_popular_items">Các Mặt Hàng Phổ Biến</string>
+    <string name="tv_categories">Thể Loại</string>
+</resources>
