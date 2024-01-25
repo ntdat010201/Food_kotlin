@@ -115,4 +115,6 @@ class HomeViewModel(
 
         })
     }
+
+    fun observeBottomSheetMeal() : LiveData<Meal> = bottomSheetMealLiveData
 }

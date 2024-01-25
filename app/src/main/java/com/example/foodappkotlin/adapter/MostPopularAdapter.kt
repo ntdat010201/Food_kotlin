@@ -10,6 +10,7 @@ import com.example.foodappkotlin.pojo.MealsByCategory
 class MostPopularAdapter : RecyclerView.Adapter<MostPopularAdapter.PopularMealViewHolder>() {
     lateinit var onItemClick :((MealsByCategory) ->Unit)
     private var mealsList = ArrayList<MealsByCategory>()
+    var onLongItemClick : ((MealsByCategory) ->Unit)? = null
 
     fun setMeals(mealsList: ArrayList<MealsByCategory>) {
         this.mealsList = mealsList
@@ -31,6 +32,11 @@ class MostPopularAdapter : RecyclerView.Adapter<MostPopularAdapter.PopularMealVi
 
         holder.itemView.setOnClickListener {
             onItemClick.invoke(mealsList[position])
+        }
+
+        holder.itemView.setOnClickListener {
+            onLongItemClick?.invoke(mealsList[position])
+            true
         }
     }
 

@@ -17,6 +17,7 @@ import com.example.foodappkotlin.adapter.CategoriesAdapter
 import com.example.foodappkotlin.adapter.MostPopularAdapter
 import com.example.foodappkotlin.databinding.FragmentHomeBinding
 import com.example.foodappkotlin.di.mainActivity
+import com.example.foodappkotlin.dialog.MealBottomSheetFragment
 import com.example.foodappkotlin.extension.showImgGlide
 import com.example.foodappkotlin.pojo.MealsByCategory
 import com.example.foodappkotlin.pojo.Meal
@@ -71,6 +72,16 @@ class HomeFragment : Fragment() {
         onRandomMealClick()
         onPopularItemClick()
         onCategoryClick()
+        onPopularItemLongClick()
+    }
+
+    private fun onPopularItemLongClick() {
+        popularItemsAdapter.onLongItemClick = {meal ->
+            val mealBottomSheetFragment =MealBottomSheetFragment.newInstance(meal.idMeal)
+            mealBottomSheetFragment.show(childFragmentManager,"Meal Info")
+
+
+        }
     }
 
     private fun onCategoryClick() {
