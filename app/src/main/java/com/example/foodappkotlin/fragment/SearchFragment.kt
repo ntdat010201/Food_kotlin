@@ -5,8 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.foodappkotlin.R
-import com.example.foodappkotlin.VideoModel.HomeViewModel
+import com.example.foodappkotlin.videoModel.HomeViewModel
 import com.example.foodappkotlin.activites.MainActivity
 import com.example.foodappkotlin.databinding.FragmentSearchBinding
 

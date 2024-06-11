@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodappkotlin.VideoModel.HomeViewModel
-import com.example.foodappkotlin.activites.CategoryMealsActivity
+import com.example.foodappkotlin.videoModel.HomeViewModel
 import com.example.foodappkotlin.activites.MainActivity
 import com.example.foodappkotlin.activites.MealActivity
 import com.example.foodappkotlin.adapter.CategoriesAdapter
@@ -20,7 +19,6 @@ import com.example.foodappkotlin.dialog.MealBottomSheetFragment
 import com.example.foodappkotlin.extension.showImgGlide
 import com.example.foodappkotlin.pojo.Meal
 import com.example.foodappkotlin.pojo.MealsByCategory
-import com.example.foodappkotlin.utils.Const.Companion.CATEGORY_NAME
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_ID
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_NAME
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_THUMB
@@ -30,7 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var randomMeal: Meal
     private lateinit var popularItemsAdapter: MostPopularAdapter
-    private lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var categoriesAdapter : CategoriesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -82,12 +80,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun onCategoryClick() {
-        categoriesAdapter.onItemClick = { category ->
-            val intent = Intent(requireContext(), CategoryMealsActivity::class.java)
-            intent.putExtra(CATEGORY_NAME, category.strCategory)
-            startActivity(intent)
-
-        }
+//        categoriesAdapter.onItemClick = { category ->
+//            val intent = Intent(requireContext(), CategoryMealsActivity::class.java)
+//            intent.putExtra(CATEGORY_NAME, category.strCategory)
+//            startActivity(intent)
+//
+//        }
     }
 
     private fun prepareCategoriesRecyclerView() {

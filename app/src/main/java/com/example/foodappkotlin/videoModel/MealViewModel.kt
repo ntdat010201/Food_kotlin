@@ -1,4 +1,4 @@
-package com.example.foodappkotlin.VideoModel
+package com.example.foodappkotlin.videoModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

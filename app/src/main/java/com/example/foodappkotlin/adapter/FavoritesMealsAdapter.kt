@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodappkotlin.databinding.MealItemBinding
 import com.example.foodappkotlin.pojo.Meal
+import com.example.foodappkotlin.pojo.MealsByCategory
 
 class FavoritesMealsAdapter :
     RecyclerView.Adapter<FavoritesMealsAdapter.FavoritesMealsAdapterViewModel>() {
+
+    var onLongItemClick : ((Meal) ->Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,6 +30,12 @@ class FavoritesMealsAdapter :
         val meal = differ.currentList[position]
         Glide.with(holder.itemView).load(meal.strMealThumb).into(holder.binding.imgMeal)
         holder.binding.tvMealName.text = meal.strMeal
+
+        holder.itemView.setOnClickListener {
+            onLongItemClick?.invoke(meal)
+            true
+        }
+
     }
 
     inner class FavoritesMealsAdapterViewModel(var binding: MealItemBinding) :
@@ -42,8 +51,8 @@ class FavoritesMealsAdapter :
             return oldItem == newItem
         }
     }
-
     val differ = AsyncListDiffer(this, diffUtil)
+
 
 
 }

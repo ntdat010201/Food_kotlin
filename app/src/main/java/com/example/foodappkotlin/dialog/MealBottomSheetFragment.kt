@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.example.foodappkotlin.VideoModel.HomeViewModel
 import com.example.foodappkotlin.activites.MainActivity
 import com.example.foodappkotlin.activites.MealActivity
 import com.example.foodappkotlin.databinding.FragmentMealBottomSheetBinding
 import com.example.foodappkotlin.extension.showImgGlide
 import com.example.foodappkotlin.utils.Const
+import com.example.foodappkotlin.videoModel.HomeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 private const val MEAL_ID = "param1"
@@ -41,12 +41,11 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String) =
-            MealBottomSheetFragment().apply {
-                arguments = Bundle().apply {
-                    putString(MEAL_ID, param1)
-                }
+        fun newInstance(param1: String) = MealBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString(MEAL_ID, param1)
             }
+        }
     }
 
     private fun initData() {
@@ -70,6 +69,7 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
             meal.strMealThumb?.let { showImgGlide(requireContext(), it, binding.imgBottomSheet) }
             binding.tvBottomLocation.text = meal.strArea
             binding.tvBottomSheetMealName.text = meal.strMeal
+            binding.tvBottomSheet.text = meal.strTags
 
             mealName = meal.strMeal
             mealThumb = meal.strMealThumb
@@ -87,6 +87,7 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
                 }
                 startActivity(intent)
             }
+
         }
     }
 }

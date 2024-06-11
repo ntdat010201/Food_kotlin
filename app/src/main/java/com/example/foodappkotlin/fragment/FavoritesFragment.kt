@@ -9,10 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodappkotlin.VideoModel.HomeViewModel
+import com.example.foodappkotlin.videoModel.HomeViewModel
 import com.example.foodappkotlin.activites.MainActivity
 import com.example.foodappkotlin.adapter.FavoritesMealsAdapter
 import com.example.foodappkotlin.databinding.FragmentFavoritesBinding
+import com.example.foodappkotlin.dialog.MealBottomSheetFragment
 import com.google.android.material.snackbar.Snackbar
 
 class FavoritesFragment : Fragment() {
@@ -37,6 +38,11 @@ class FavoritesFragment : Fragment() {
     private fun initView() {
         prepareRecyclerView()
         observeFavorites()
+
+        favoritesAdapter.onLongItemClick = { meal ->
+            val mealBottomSheetFragment = MealBottomSheetFragment.newInstance(meal.idMeal)
+            mealBottomSheetFragment.show(childFragmentManager, "Meal Info")
+        }
     }
 
     private fun initListener() {
@@ -47,8 +53,8 @@ class FavoritesFragment : Fragment() {
 
     private fun itemTouchHelper() {
         val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN
         ) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -59,7 +65,9 @@ class FavoritesFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 viewModel.deleteMeal(favoritesAdapter.differ.currentList[position])
-                Snackbar.make(requireView() ,"meal deleted" ,Snackbar.LENGTH_LONG).setAction(
+
+
+                Snackbar.make(requireView(), "meal deleted", Snackbar.LENGTH_LONG).setAction(
                     "Undo",
                     View.OnClickListener {
                         viewModel.insertMeal(favoritesAdapter.differ.currentList[position])

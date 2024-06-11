@@ -63,6 +63,8 @@ class LoginActivity : AppCompatActivity() {
         mAuth!!.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 intent = Intent(this, MainActivity::class.java)
+                intent.putExtra(email,"EMAIL")
+                intent.putExtra(pass,"PASS")
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Đăng nhập không thành công !", Toast.LENGTH_SHORT).show()

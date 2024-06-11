@@ -1,4 +1,4 @@
-package com.example.foodappkotlin.VideoModel
+package com.example.foodappkotlin.videoModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,14 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodappkotlin.db.MealDatabase
-import com.example.foodappkotlin.fragment.HomeFragment
 import com.example.foodappkotlin.pojo.*
 import com.example.foodappkotlin.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class HomeViewModel(
    var mealDatabase : MealDatabase

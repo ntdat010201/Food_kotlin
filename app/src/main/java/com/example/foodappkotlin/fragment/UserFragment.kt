@@ -9,18 +9,17 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.foodappkotlin.activites.LoginActivity
-import com.example.foodappkotlin.databinding.FragmentCategoriesBinding
+import com.example.foodappkotlin.databinding.FragmentUserBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.system.exitProcess
 
-class CategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentCategoriesBinding
+class UserFragment : Fragment() {
+    private lateinit var binding: FragmentUserBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCategoriesBinding.inflate(LayoutInflater.from(requireContext()))
+        binding = FragmentUserBinding.inflate(LayoutInflater.from(requireContext()))
         initData()
         initView()
         initListener()
@@ -30,7 +29,6 @@ class CategoriesFragment : Fragment() {
     private fun initData() {
         var name = arguments?.getString("nameEmail")
         var pass = arguments?.getString("namePass")
-
     }
 
     private fun initView() {
@@ -42,8 +40,7 @@ class CategoriesFragment : Fragment() {
         binding.logout.setOnClickListener {
 
             val logout = MaterialAlertDialogBuilder(requireContext())
-            logout.setTitle("Đăng xuất")
-                .setMessage("bạn muốn đăng xuất")
+            logout.setTitle("Đăng xuất").setMessage("bạn muốn đăng xuất")
                 .setPositiveButton("đúng") { _, _ ->
                     val intent = Intent(context, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -55,10 +52,8 @@ class CategoriesFragment : Fragment() {
 
             val customDialog = logout.create()
             customDialog.show()
-            customDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                .setTextColor(Color.RED)
-            customDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                .setTextColor(Color.RED)
+            customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
+            customDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED)
 
         }
     }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -12,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodappkotlin.R
-import com.example.foodappkotlin.VideoModel.MealViewModel
-import com.example.foodappkotlin.VideoModel.MealViewModelFactory
+import com.example.foodappkotlin.videoModel.MealViewModel
+import com.example.foodappkotlin.videoModel.MealViewModelFactory
 import com.example.foodappkotlin.databinding.ActivityMealBinding
 import com.example.foodappkotlin.db.MealDatabase
 import com.example.foodappkotlin.extension.showImgGlide

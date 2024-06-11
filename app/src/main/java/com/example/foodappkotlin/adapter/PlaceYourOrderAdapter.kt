@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodappkotlin.databinding.OrderItemBinding
 import com.example.foodappkotlin.extension.showImgGlide
-import com.example.foodappkotlin.pojo.MealsByCategory
 
 class PlaceYourOrderAdapter(
     val context: Context,
