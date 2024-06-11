@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -29,7 +30,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealThumb: String
     private lateinit var youTubeLink: String
     private lateinit var mealMvvm: MealViewModel
-    private var mealToSave : Meal? = null
+    private var mealToSave: Meal? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class MealActivity : AppCompatActivity() {
         val mealDatabase = MealDatabase.getInstance(this)
         val viewModelFactory = MealViewModelFactory(mealDatabase)
 
-        mealMvvm = ViewModelProvider(this,viewModelFactory)[MealViewModel::class.java]
+        mealMvvm = ViewModelProvider(this, viewModelFactory)[MealViewModel::class.java]
         getDataView()
 
         mealMvvm.getMealDetail(mealId)
@@ -60,6 +61,43 @@ class MealActivity : AppCompatActivity() {
     private fun initListener() {
         onYoutubeImageClick()
         onFavoriteClick()
+        onOrderClick()
+        onNumberOfItems()
+    }
+
+    private fun onNumberOfItems() {
+        var sum = 1
+        binding.quantity.text = sum.toString()
+
+        binding.removeCircle.setOnClickListener {
+            sum -=1
+            if (sum >= 0) {
+                binding.quantity.text = sum.toString()
+            } else {
+                sum = 0
+                binding.quantity.text = sum.toString()
+            }
+        }
+
+        binding.addCircle.setOnClickListener {
+            sum += 1
+            binding.quantity.text = sum.toString()
+        }
+    }
+
+    private fun onOrderClick() {
+        binding.order.setOnClickListener {
+
+            if (mealName != null && mealThumb != null) {
+                val intent = Intent(this, PlaceYourOrderActivity::class.java)
+                intent.apply {
+                    putExtra(MEAL_ID, mealId)
+                    putExtra(MEAL_NAME, mealName)
+                    putExtra(MEAL_THUMB, mealThumb)
+                }
+                startActivity(intent)
+            }
+        }
     }
 
     private fun onFavoriteClick() {

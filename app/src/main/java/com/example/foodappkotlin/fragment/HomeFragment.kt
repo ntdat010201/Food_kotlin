@@ -16,16 +16,14 @@ import com.example.foodappkotlin.activites.MealActivity
 import com.example.foodappkotlin.adapter.CategoriesAdapter
 import com.example.foodappkotlin.adapter.MostPopularAdapter
 import com.example.foodappkotlin.databinding.FragmentHomeBinding
-import com.example.foodappkotlin.di.mainActivity
 import com.example.foodappkotlin.dialog.MealBottomSheetFragment
 import com.example.foodappkotlin.extension.showImgGlide
-import com.example.foodappkotlin.pojo.MealsByCategory
 import com.example.foodappkotlin.pojo.Meal
+import com.example.foodappkotlin.pojo.MealsByCategory
 import com.example.foodappkotlin.utils.Const.Companion.CATEGORY_NAME
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_ID
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_NAME
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_THUMB
-import org.koin.core.module.Module
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -80,7 +78,6 @@ class HomeFragment : Fragment() {
             val mealBottomSheetFragment = MealBottomSheetFragment.newInstance(meal.idMeal)
             mealBottomSheetFragment.show(childFragmentManager, "Meal Info")
 
-
         }
     }
 
@@ -105,7 +102,6 @@ class HomeFragment : Fragment() {
             categoriesAdapter.setCategoryList(categories)
         })
     }
-
 
     private fun onPopularItemClick() {
         popularItemsAdapter.onItemClick = { meal ->

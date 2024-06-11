@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.foodappkotlin.VideoModel.HomeViewModel
 import com.example.foodappkotlin.activites.MainActivity
 import com.example.foodappkotlin.activites.MealActivity
 import com.example.foodappkotlin.databinding.FragmentMealBottomSheetBinding
 import com.example.foodappkotlin.extension.showImgGlide
-import com.example.foodappkotlin.fragment.HomeFragment
 import com.example.foodappkotlin.utils.Const
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -21,7 +19,7 @@ private const val MEAL_ID = "param1"
 class MealBottomSheetFragment : BottomSheetDialogFragment() {
     private var mealId: String? = null
     private lateinit var binding: FragmentMealBottomSheetBinding
-    private lateinit var viewModel : HomeViewModel
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +63,11 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
         onBottomSheetMealDialogClick()
     }
 
-    private var mealName : String? = null
-    private var mealThumb : String? = null
-    private fun observeBottomSheetMeal(){
+    private var mealName: String? = null
+    private var mealThumb: String? = null
+    private fun observeBottomSheetMeal() {
         viewModel.observeBottomSheetMeal().observe(viewLifecycleOwner, Observer { meal ->
-            meal.strMealThumb?.let { showImgGlide(requireContext(), it,binding.imgBottomSheet) }
+            meal.strMealThumb?.let { showImgGlide(requireContext(), it, binding.imgBottomSheet) }
             binding.tvBottomLocation.text = meal.strArea
             binding.tvBottomSheetMealName.text = meal.strMeal
 
@@ -80,12 +78,12 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun onBottomSheetMealDialogClick() {
         binding.bottomSheet.setOnClickListener {
-            if (mealName != null && mealThumb!= null){
-                val intent = Intent(activity,MealActivity::class.java)
+            if (mealName != null && mealThumb != null) {
+                val intent = Intent(activity, MealActivity::class.java)
                 intent.apply {
-                    putExtra(Const.MEAL_ID,mealId)
-                    putExtra(Const.MEAL_NAME,mealName)
-                    putExtra(Const.MEAL_THUMB,mealThumb)
+                    putExtra(Const.MEAL_ID, mealId)
+                    putExtra(Const.MEAL_NAME, mealName)
+                    putExtra(Const.MEAL_THUMB, mealThumb)
                 }
                 startActivity(intent)
             }
