@@ -3,7 +3,10 @@ package com.example.foodappkotlin.activites
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import com.example.foodappkotlin.R
 import com.example.foodappkotlin.databinding.ActivityLoginBinding
@@ -50,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         val email: String = binding.email.text.toString()
+        Log.d("DAT", "login: $email")
         val pass: String = binding.password.text.toString()
 
         if (TextUtils.isEmpty(email)) {
@@ -63,8 +67,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth!!.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 intent = Intent(this, MainActivity::class.java)
-                intent.putExtra(email,"EMAIL")
-                intent.putExtra(pass,"PASS")
+                intent.putExtra("EMAIL_USER",email)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Đăng nhập không thành công !", Toast.LENGTH_SHORT).show()

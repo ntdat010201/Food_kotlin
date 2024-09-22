@@ -1,6 +1,5 @@
 package com.example.foodappkotlin.activites
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,13 +24,11 @@ class MainActivity : BaseActivity() {
     private val favoritesFragment by inject<FavoritesFragment>()
     private val userFragment by inject<UserFragment>()
 
-    val viewModel by viewModel<HomeViewModel> { parametersOf(MealDatabase.getInstance(this))  }
+    val viewModel by viewModel<HomeViewModel> { parametersOf(MealDatabase.getInstance(this)) }
 
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
 
     var nameEmail: String? = null
-    var namePass: String? = null
-
 
 //    val viewModel: HomeViewModel by lazy {
 //        val mealDatabase = MealDatabase.getInstance(this)
@@ -44,17 +41,20 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         initData()
+
     }
 
     private fun initData() {
+        nameEmail = intent.getStringExtra("EMAIL_USER")
+        Log.d("DAT", "initData: $nameEmail")
 
         myViewPagerAdapter = MyViewPagerAdapter(this)
         myViewPagerAdapter!!.setFragments(homeFragment, favoritesFragment, userFragment)
 
         /* khởi tạo và set viewpager2 tablayout*/
         binding.viewPager.offscreenPageLimit = 3
-
         binding.viewPager.adapter = myViewPagerAdapter
+
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.setIcon(R.drawable.ic_home)
@@ -62,16 +62,6 @@ class MainActivity : BaseActivity() {
                 else -> tab.setIcon(R.drawable.ic_category)
             }
         }.attach()
-
-
-        nameEmail = Intent().getStringExtra("EMAIL")
-        namePass = Intent().getStringExtra("PASS")
-
-        Log.d("DAT", "initData: " + nameEmail.toString())
-
-        userFragment.arguments?.putString(nameEmail, "nameEmail")
-        userFragment.arguments?.putString(namePass, "namePass")
-
     }
 
 

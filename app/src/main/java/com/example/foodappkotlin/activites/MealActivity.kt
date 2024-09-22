@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodappkotlin.R
-import com.example.foodappkotlin.videoModel.MealViewModel
-import com.example.foodappkotlin.videoModel.MealViewModelFactory
 import com.example.foodappkotlin.databinding.ActivityMealBinding
 import com.example.foodappkotlin.db.MealDatabase
 import com.example.foodappkotlin.extension.showImgGlide
@@ -20,6 +18,8 @@ import com.example.foodappkotlin.pojo.Meal
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_ID
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_NAME
 import com.example.foodappkotlin.utils.Const.Companion.MEAL_THUMB
+import com.example.foodappkotlin.videoModel.MealViewModel
+import com.example.foodappkotlin.videoModel.MealViewModelFactory
 
 class MealActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMealBinding
@@ -48,6 +48,7 @@ class MealActivity : AppCompatActivity() {
         getDataView()
 
         mealMvvm.getMealDetail(mealId)
+
     }
 
 
@@ -69,7 +70,7 @@ class MealActivity : AppCompatActivity() {
         binding.quantity.text = sum.toString()
 
         binding.removeCircle.setOnClickListener {
-            sum -=1
+            sum -= 1
             if (sum >= 0) {
                 binding.quantity.text = sum.toString()
             } else {

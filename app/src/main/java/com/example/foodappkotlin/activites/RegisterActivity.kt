@@ -43,6 +43,8 @@ class RegisterActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "vui long nhap Email !", Toast.LENGTH_SHORT).show()
             return
+
+
         }
         if (TextUtils.isEmpty(pass)) {
             Toast.makeText(this, "vui long nhap mat khau !", Toast.LENGTH_SHORT).show()
